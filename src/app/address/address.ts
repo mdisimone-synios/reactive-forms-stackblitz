@@ -1,11 +1,10 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import {
   ControlContainer,
   FormGroup,
   ReactiveFormsModule,
 } from '@angular/forms';
 import { ErrorMessageComponent } from '../error-message/error-message';
-import { FormControlIsInvalidClassDirective } from '../utils/directives/is-invalid.directive';
 import { FormControlRequiredAttributeDirective } from '../utils/directives/required.directive';
 import { MultiFormData } from '../utils/models/main.models';
 
@@ -24,11 +23,11 @@ const COUNTRIES: MultiFormData[] = [
   imports: [
     ReactiveFormsModule,
     ErrorMessageComponent,
-    FormControlRequiredAttributeDirective,
-    FormControlIsInvalidClassDirective,
+    FormControlRequiredAttributeDirective
   ],
   templateUrl: './address.html',
   styleUrl: './address.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AddressComponent implements OnInit {
   private readonly controlContainer = inject(ControlContainer);

@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from "@angular/core";
+import { ChangeDetectionStrategy, Component, inject, OnInit } from "@angular/core";
 import {
   ControlContainer,
   FormControl,
@@ -6,6 +6,7 @@ import {
   ReactiveFormsModule,
 } from "@angular/forms";
 import { MultiFormData } from "../utils/models/main.models";
+import { FormControlRequiredAttributeDirective } from "../utils/directives/required.directive";
 
 export const KEYWORDS: MultiFormData[] = [
   { label: "Frontend", value: "fe" },
@@ -18,9 +19,13 @@ export const KEYWORDS: MultiFormData[] = [
 
 @Component({
   selector: "app-keywords",
-  imports: [ReactiveFormsModule],
+  imports: [
+    ReactiveFormsModule,
+    FormControlRequiredAttributeDirective
+  ],
   templateUrl: "./keywords.html",
   styleUrl: "./keywords.scss",
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class KeywordsComponent implements OnInit {
   private readonly controlContainer = inject(ControlContainer);

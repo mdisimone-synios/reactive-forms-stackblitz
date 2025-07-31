@@ -13,7 +13,6 @@ import {
   Validators,
 } from '@angular/forms';
 import { ErrorMessageComponent } from '../error-message/error-message';
-import { FormControlIsInvalidClassDirective } from '../utils/directives/is-invalid.directive';
 import { FormControlRequiredAttributeDirective } from '../utils/directives/required.directive';
 import { CustomValidators } from '../utils/validators/custom.validators';
 
@@ -22,8 +21,7 @@ import { CustomValidators } from '../utils/validators/custom.validators';
   imports: [
     ReactiveFormsModule,
     ErrorMessageComponent,
-    FormControlRequiredAttributeDirective,
-    FormControlIsInvalidClassDirective,
+    FormControlRequiredAttributeDirective
   ],
   templateUrl: './user.html',
   styleUrl: './user.scss',

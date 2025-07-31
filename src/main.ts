@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { ApplicationConfig, Component, NgModule, importProvidersFrom } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { FormComponent } from './app/form/form';
+import { FormControlRequiredAttributeDirective } from './app/utils/directives/required.directive';
 
 @Component({
   selector: 'app-root',
@@ -11,8 +12,8 @@ import { FormComponent } from './app/form/form';
     </div>
   </div> `,
 })
-export class App {
-  name = 'Angular';
-}
+export class App {}
 
-bootstrapApplication(App);
+bootstrapApplication(App).catch((err) =>
+  console.error(err),
+);

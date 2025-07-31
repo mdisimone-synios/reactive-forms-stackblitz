@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, importProvidersFrom, inject, input } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AddressComponent } from '../address/address';
 import { BackendService } from '../data-access/backend.service';
@@ -7,6 +7,14 @@ import { LanguagesComponent } from '../languages/languages';
 import { UserComponent } from '../user/user';
 import { CombinedForm, UserForm } from '../utils/models/main.models';
 import { CustomValidators } from '../utils/validators/custom.validators';
+
+const DEFAULT_DATA = {
+  user: {
+    title: '',
+    username: '',
+    //...
+  }
+}
 
 @Component({
   selector: 'app-form',
@@ -19,15 +27,20 @@ import { CustomValidators } from '../utils/validators/custom.validators';
   ],
   templateUrl: './form.html',
   styleUrl: './form.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormComponent {
   private readonly backendService = inject(BackendService);
   private readonly fb = inject(FormBuilder);
 
+  data = input({});
+
+  currentData = {...DEFAULT_DATA, ...this.data()}
+
   form = this.fb.group<CombinedForm>({
     user: this.fb.group<UserForm>({
       title: this.fb.control(null),
-      username: this.fb.control('', {
+      username: this.fb.control(this.currentData.user.username, {
         validators: [Validators.required],
         asyncValidators: [this.backendService.usernameValidator()],
         updateOn: 'blur',
@@ -49,7 +62,9 @@ export class FormComponent {
       zip: ['', [Validators.min(1000), Validators.max(99999)]],
       country: ['', [Validators.required]],
     }),
-    keywords: this.fb.group({}),
+    keywords: this.fb.group({
+      
+    }),
   });
 
   submit() {

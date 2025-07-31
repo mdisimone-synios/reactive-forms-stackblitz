@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import {
   ControlContainer,
   FormArray,
@@ -7,6 +7,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { MultiFormData } from '../utils/models/main.models';
+import { FormControlRequiredAttributeDirective } from '../utils/directives/required.directive';
 
 export const LANGUAGES: MultiFormData[] = [
   { label: 'Typescript', value: 'ts' },
@@ -19,9 +20,11 @@ export const LANGUAGES: MultiFormData[] = [
 
 @Component({
   selector: 'app-languages',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule,
+    FormControlRequiredAttributeDirective],
   templateUrl: './languages.html',
   styleUrl: './languages.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LanguagesComponent {
   private readonly controlContainer = inject(ControlContainer);

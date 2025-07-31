@@ -1,4 +1,4 @@
-<form [formGroup]="form" class="needs-validation">
+<form [formGroup]="form" class="needs-validation" novalidate>
   <div class="grid gap-4">
     <div class="g-col-12 form-group">
       <label for="street" class="form-label">Address</label>
@@ -9,7 +9,6 @@
         placeholder="Enter Address"
         name="address"
         formControlName="address"
-        required
       ></textarea>
       <app-error-message formName="number"></app-error-message>
     </div>

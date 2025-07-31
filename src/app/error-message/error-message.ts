@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   inject,
@@ -14,6 +15,7 @@ import { AbstractControl, ControlContainer, FormGroup } from '@angular/forms';
   templateUrl: './error-message.html',
   styleUrl: './error-message.scss',
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'invalid-feedback',
   },
