@@ -12,26 +12,41 @@
           }
         </select>
         <app-error-message formName="title"></app-error-message>
+        <button
+          class="btn btn-danger btn-sm btn-info-toggle bi bi-question-circle"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#collapseSelectPlaceholder"
+          aria-expanded="false"
+          aria-controls="collapseSelectPlaceholder"
+        ></button>
       </div>
     </div>
     <div class="g-col-12 form-group">
-      This select demontrates the correct way to have something like a
-      <code>placeholder</code> in inputs. This is done by adding a
-      <code>disabled</code> option with a value of <code>null</code>
-      <p>
-        <code>
-          &lt;option disabled [ngValue]=&quot;null&quot;&gt;Select your
-          Title&lt;/option&gt;
-        </code>
-      </p>
-      <p>
-        See
-        <a
-          href="https://github.com/MarcelloDiSimone/reactive-forms-stackblitz?tab=readme-ov-file#select-placeholders"
-          target="_blank"
-          >Select Placeholders</a
-        >
-      </p>
+      <div class="collapse" id="collapseSelectPlaceholder">
+        <div class="card card-body">
+          <p>
+            This select shows how to setup a select that provides something like
+            a
+            <code>placeholder</code>. This is done by adding a
+            <code>disabled</code> option with a value of <code>null</code>
+          </p>
+          <p>
+            <code>
+              &lt;option disabled [ngValue]=&quot;null&quot;&gt;Select your
+              Title&lt;/option&gt;
+            </code>
+          </p>
+          <p>
+            See
+            <a
+              href="https://github.com/MarcelloDiSimone/reactive-forms-stackblitz?tab=readme-ov-file#select-placeholders"
+              target="_blank"
+              >Select Placeholders</a
+            >
+          </p>
+        </div>
+      </div>
     </div>
     <div class="g-col-12 form-group">
       <label for="firstname" class="form-label">First name</label>
@@ -105,23 +120,35 @@
         />
         <label class="form-check-label" for="primary-contact-2"> Phone </label>
       </div>
+      <button
+        class="btn btn-danger btn-sm btn-info-toggle bi bi-question-circle"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapseConditionalValidation"
+        aria-expanded="false"
+        aria-controls="collapseConditionalValidation"
+      ></button>
     </div>
     <div class="g-col-12 form-group">
-      <p>
-        This radio select group demonstates a conditional validation, using a
-        custom <code>validateWhen</code> factory function. In case `Phone` is
-        selected as primare contact method, the conditional validation switches
-        the Phone <code>formControl</code> to required.
-      </p>
-      <p>
-        The <code>validateWhen</code> factory function and its working is
-        explained in greater detail in the Readme
-        <a
-          href="https://github.com/MarcelloDiSimone/reactive-forms-stackblitz?tab=readme-ov-file#conditional-validators"
-          target="_blank"
-          >here</a
-        >
-      </p>
+      <div class="collapse" id="collapseConditionalValidation">
+        <div class="card card-body">
+          <p>
+            This radio select group uses conditional validation with a custom
+            <code>validateWhen</code> factory function. In case `Phone` is
+            selected as primare contact method, the conditional validation
+            switches the Phone <code>formControl</code> to required.
+          </p>
+          <p>
+            The <code>validateWhen</code> factory function and its working is
+            explained in greater detail in the Readme
+            <a
+              href="https://github.com/MarcelloDiSimone/reactive-forms-stackblitz?tab=readme-ov-file#conditional-validators"
+              target="_blank"
+              >here</a
+            >
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </div>
