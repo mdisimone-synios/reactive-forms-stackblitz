@@ -15,7 +15,7 @@ import { CustomValidators } from './../utils/validators/custom.validators';
   selector: 'app-links',
   imports: [ReactiveFormsModule, ErrorMessageComponent],
   templateUrl: './links.html',
-  styleUrl: './links.css',
+  styleUrl: './links.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Links {
