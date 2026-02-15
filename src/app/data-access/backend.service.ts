@@ -17,15 +17,9 @@ export class BackendService {
     return of(this.existingUsernames.includes(username)).pipe(delay(1000));
   }
   usernameValidator(): AsyncValidatorFn {
-    console.log('usernameValidator');
-
     return (control: AbstractControl): Observable<ValidationErrors | null> => {
       return this.checkIfUsernameExists(control.value).pipe(
-        map((res) => {
-          console.log('res', res ? { usernameExists: true } : null);
-
-          return res ? { usernameExists: true } : null;
-        }),
+        map((res) => (res ? { usernameExists: true } : null)),
       );
     };
   }

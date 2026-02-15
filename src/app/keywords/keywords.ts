@@ -5,7 +5,7 @@ import {
   FormGroup,
   ReactiveFormsModule,
 } from "@angular/forms";
-import { MultiFormData } from "../utils/models/main.models";
+import { KeywordsForm, MultiFormData } from "../utils/models/main.models";
 import { FormControlRequiredAttributeDirective } from "../utils/directives/required.directive";
 
 export const KEYWORDS: MultiFormData[] = [
@@ -29,14 +29,14 @@ export const KEYWORDS: MultiFormData[] = [
 })
 export class KeywordsComponent implements OnInit {
   private readonly controlContainer = inject(ControlContainer);
-  form!: FormGroup;
+  form!: FormGroup<KeywordsForm>;
 
   keywords = KEYWORDS;
 
   ngOnInit(): void {
     this.form = this.controlContainer.control as FormGroup;
     this.keywords.map((keyword) => {
-      this.form.addControl(keyword.value, new FormControl(false));
+      this.form.addControl(keyword.value, new FormControl(false, { nonNullable: true }));
     });
   }
 }

@@ -3,12 +3,14 @@
 $enable-cssgrid: true;
 
 @import '../node_modules/bootstrap/scss/bootstrap';
+@import '../node_modules/bootstrap-icons/font/bootstrap-icons';
 
 input {
   width: 100%;
 }
 
-label:has(+ :required)::after {
+label:has(+ :required)::after,
+label:has(+ div > :required)::after {
   content: ' *';
 }
 

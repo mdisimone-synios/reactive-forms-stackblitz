@@ -10,7 +10,7 @@ import {
   selector: '[formControl], [formControlName]',
 })
 export class FormControlRequiredAttributeDirective implements OnInit {
-  private readonly elementRef = inject( ElementRef);
+  private readonly elementRef = inject(ElementRef);
   private readonly ngControl = inject(NgControl);
 
   ngOnInit(): void {
@@ -19,7 +19,7 @@ export class FormControlRequiredAttributeDirective implements OnInit {
         this.ngControl instanceof FormControlDirective) &&
       this.ngControl.control.hasValidator(Validators.required)
     ) {
-      this.elementRef.nativeElement.required = 'true';
+      this.elementRef.nativeElement.required = true;
     }
   }
 }

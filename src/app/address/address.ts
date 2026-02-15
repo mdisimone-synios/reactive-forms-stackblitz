@@ -6,7 +6,7 @@ import {
 } from '@angular/forms';
 import { ErrorMessageComponent } from '../error-message/error-message';
 import { FormControlRequiredAttributeDirective } from '../utils/directives/required.directive';
-import { MultiFormData } from '../utils/models/main.models';
+import { AddressForm, MultiFormData } from '../utils/models/main.models';
 
 const COUNTRIES: MultiFormData[] = [
   { value: 'de-DE', label: 'Germany' },
@@ -31,7 +31,7 @@ const COUNTRIES: MultiFormData[] = [
 })
 export class AddressComponent implements OnInit {
   private readonly controlContainer = inject(ControlContainer);
-  form!: FormGroup;
+  form!: FormGroup<AddressForm>;
 
   countries = COUNTRIES;
 

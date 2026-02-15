@@ -1,7 +1,6 @@
-import { ApplicationConfig, Component, NgModule, importProvidersFrom } from '@angular/core';
+import { Component } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { FormComponent } from './app/form/form';
-import { FormControlRequiredAttributeDirective } from './app/utils/directives/required.directive';
 
 @Component({
   selector: 'app-root',
