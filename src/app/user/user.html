@@ -9,27 +9,39 @@
         placeholder="Enter username"
       />
       <app-error-message formName="username"></app-error-message>
+      <button
+        class="btn btn-danger btn-sm btn-info-toggle bi bi-question-circle"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapseUsernameValidation"
+        aria-expanded="false"
+        aria-controls="collapseUsernameValidation"
+      ></button>
     </div>
     <div class="g-col-12 form-group">
-      <p>
-        The username validation uses an asynchonous validation. This can be used
-        to call backend API's to check the validity of an input. In this case we
-        have a debounced Observable mimiking this behaviour.
-      </p>
-      <p>
-        <strong
-          >Try using one of those usernames which are taken: 'hello', 'world',
-          'username', 'neutronenstern'</strong
-        >
-      </p>
-      <p>
-        See
-        <a
-          href="https://github.com/MarcelloDiSimone/reactive-forms-stackblitz?tab=readme-ov-file#async-validators"
-          target="_blank"
-          >Async Validation</a
-        >
-      </p>
+      <div class="collapse" id="collapseUsernameValidation">
+        <div class="card card-body">
+          <p>
+            The username validation uses an asynchonous validation. This can be
+            used to call backend API's to check the validity of an input. In
+            this case we have a debounced Observable mimiking this behaviour.
+          </p>
+          <p>
+            <strong
+              >Try using one of those usernames which are taken: 'hello',
+              'world', 'username', 'neutronenstern'</strong
+            >
+          </p>
+          <p>
+            See
+            <a
+              href="https://github.com/MarcelloDiSimone/reactive-forms-stackblitz?tab=readme-ov-file#async-validators"
+              target="_blank"
+              >Async Validation</a
+            >
+          </p>
+        </div>
+      </div>
     </div>
     <div class="g-col-6 form-group">
       <label for="password" class="form-label">Password</label>
@@ -41,6 +53,14 @@
         placeholder="Enter password"
       />
       <app-error-message formName="password"></app-error-message>
+      <button
+        class="btn btn-danger btn-sm btn-info-toggle bi bi-question-circle"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapsePassworValidation"
+        aria-expanded="false"
+        aria-controls="collapsePassworValidation"
+      ></button>
     </div>
     <div class="g-col-6 form-group">
       <label for="passwordConfirm" class="form-label">Password confirm</label>
@@ -54,37 +74,41 @@
       <app-error-message formName="passwordConfirm"></app-error-message>
       <app-error-message></app-error-message>
     </div>
-
     <div class="g-col-12 form-group">
-      <p>
-        The password validation uses three different validation types. A regular
-        <code>Validators.required</code>, a composed validation that runs
-        multiple validations at once checking the strengs of the password and a
-        combined validation comparing both password <code>formControl</code>`s
-        to make sure they're equal.
-      </p>
-      <p>
-        A composed validation is a collection of regular validations like
-        <code>minLength</code> or other custom validations. In this example we
-        have wrapped the regular pattern validation into a custom validation in
-        order to return different error codes to show different error messages
-        for each type of pattern (i.e. uppercase, lowercase,
-        specialCharacter...)
-      </p>
-      <p>
-        The combined validation is different from the others, because it is not
-        bound to the <code>formControl</code> but to the parent
-        <code>formGroup</code> in order to have access to both input field
-        values.
-      </p>
-      <p>
-        See
-        <a
-          href="https://github.com/MarcelloDiSimone/reactive-forms-stackblitz?tab=readme-ov-file#combined-validators"
-          target="_blank"
-          >Combined Validators</a
-        >
-      </p>
+      <div class="collapse" id="collapsePassworValidation">
+        <div class="card card-body">
+          <p>
+            The password validation uses three different validation types. A
+            regular
+            <code>Validators.required</code>, a composed validation that runs
+            multiple validations at once checking the strengs of the password
+            and a combined validation comparing both password
+            <code>formControl</code>`s to make sure they're equal.
+          </p>
+          <p>
+            A composed validation is a collection of regular validations like
+            <code>minLength</code> or other custom validations. In this example
+            we have wrapped the regular pattern validation into a custom
+            validation in order to return different error codes to show
+            different error messages for each type of pattern (i.e. uppercase,
+            lowercase, specialCharacter...)
+          </p>
+          <p>
+            The combined validation is different from the others, because it is
+            not bound to the <code>formControl</code> but to the parent
+            <code>formGroup</code> in order to have access to both input field
+            values.
+          </p>
+          <p>
+            See
+            <a
+              href="https://github.com/MarcelloDiSimone/reactive-forms-stackblitz?tab=readme-ov-file#combined-validators"
+              target="_blank"
+              >Combined Validators</a
+            >
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </div>

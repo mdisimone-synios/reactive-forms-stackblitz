@@ -23,3 +23,17 @@ input.is-pending {
   background-position: right center;
   background-repeat: no-repeat;
 }
+
+.btn-info-toggle {
+  --bs-btn-padding-x: 0.25rem;
+  position: absolute;
+  font-size: 2rem;
+  left: -3rem;
+  bottom: 0;
+  border-radius: 50%;
+  line-height: 1;
+}
+
+.form-group {
+  position: relative;
+}
