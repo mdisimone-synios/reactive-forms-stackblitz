@@ -1,21 +1,19 @@
-<form [formGroup]="form">
-  <div class="grid">
-    <div class="g-col-12 form-group">
-      <label class="form-label">Languages</label>
-      @for (lang of languages; track lang.value; let i = $index) {
-        <div class="form-check form-check-inline">
-          <input
-            type="checkbox"
-            id="language-{{ i }}"
-            [value]="lang.value"
-            (change)="onChange($event)"
-            class="form-check-input"
-          />
-          <label for="language-{{ i }}" class="form-check-label"
-            >{{ lang.label }}
-          </label>
-        </div>
-      }
-    </div>
+<div class="grid">
+  <div class="g-col-12 form-group">
+    <label class="form-label">Languages</label>
+    @for (lang of languages; track lang.value; let i = $index) {
+      <div class="form-check form-check-inline">
+        <input
+          type="checkbox"
+          id="language-{{ i }}"
+          [value]="lang.value"
+          (change)="onChange($event)"
+          class="form-check-input"
+        />
+        <label for="language-{{ i }}" class="form-check-label"
+          >{{ lang.label }}
+        </label>
+      </div>
+    }
   </div>
-</form>
+</div>

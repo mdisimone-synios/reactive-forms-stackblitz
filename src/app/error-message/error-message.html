@@ -1,52 +1,55 @@
-@if (currentInput && currentInput.invalid) {
-  @if (currentInput.hasError('min')) {
+@if (currentControl && currentControl.invalid) {
+  @if (currentControl.hasError('min')) {
     <div>
-      < {{ formName() }} must be at least {{ currentInput.errors!['min'].min }}.
+      {{ formName() }} must be at least {{ currentControl.errors!['min'].min }}.
     </div>
   }
-  @if (currentInput.hasError('max')) {
+  @if (currentControl.hasError('max')) {
     <div>
-      {{ formName() }} must be at most {{ currentInput.errors!['max'].max }}.
+      {{ formName() }} must be at most {{ currentControl.errors!['max'].max }}.
     </div>
   }
-  @if (currentInput.hasError('minlength')) {
+  @if (currentControl.hasError('minlength')) {
     <div>
       {{ formName() }} must be at least
-      {{ currentInput.errors!['minlength'].requiredLength }} characters.'
+      {{ currentControl.errors!['minlength'].requiredLength }} characters.'
     </div>
   }
-  @if (currentInput.hasError('maxlength')) {
+  @if (currentControl.hasError('maxlength')) {
     <div>
       {{ formName() }} must be maximal
-      {{ currentInput.errors!['minlength'].requiredLength }}
+      {{ currentControl.errors!['maxlength'].requiredLength }}
       characters long.
     </div>
   }
-  @if (currentInput.hasError('required')) {
+  @if (currentControl.hasError('required')) {
     <div>{{ formName() }} is required.</div>
   }
-  @if (currentInput.hasError('email')) {
+  @if (currentControl.hasError('email')) {
     <div>Please enter a valid email address.</div>
   }
-  @if (currentInput.hasError('pattern')) {
+  @if (currentControl.hasError('pattern')) {
     <div>{{ formName() }} has an invalid format.</div>
   }
-  @if (currentInput.hasError('containsUppercase')) {
+  @if (currentControl.hasError('containsUppercase')) {
     <div>{{ formName() }} must contain uppercase characters.</div>
   }
-  @if (currentInput.hasError('containsLowercase')) {
+  @if (currentControl.hasError('containsLowercase')) {
     <div>{{ formName() }} must contain lowercase characters.</div>
   }
-  @if (currentInput.hasError('containsSpecialCharacters')) {
+  @if (currentControl.hasError('containsSpecialCharacters')) {
     <div>{{ formName() }} must contain special characters.</div>
   }
-  @if (currentInput.hasError('containsNumbers')) {
+  @if (currentControl.hasError('containsNumbers')) {
     <div>{{ formName() }} must contain numbers.</div>
   }
-  @if (currentInput.hasError('isEqualWith')) {
+  @if (currentControl.hasError('isEqualWith')) {
     <div>{{ formName() }} does not match.</div>
   }
-  @if (currentInput.hasError('usernameExists')) {
+  @if (currentControl.hasError('invalidUrl')) {
+    <div>Please enter a valid URL.</div>
+  }
+  @if (currentControl.hasError('usernameExists')) {
     <div>Username is already taken.</div>
   }
 }

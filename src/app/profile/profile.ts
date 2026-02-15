@@ -1,33 +1,36 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject,
-  OnInit,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import {
   ControlContainer,
   FormGroup,
   ReactiveFormsModule,
 } from '@angular/forms';
 import { ErrorMessageComponent } from '../error-message/error-message';
-import { UserForm } from '../utils/models/main.models';
 import { FormControlRequiredAttributeDirective } from '../utils/directives/required.directive';
+import { ProfileForm } from '../utils/models/main.models';
+
+const TITLES = [
+  { value: 'prof', label: 'Professor' },
+  { value: 'sir', label: 'Sir' },
+  { value: 'dr', label: 'Doctor' },
+];
 
 @Component({
-  selector: 'app-user',
+  selector: 'app-profile',
   imports: [
-    ReactiveFormsModule,
     ErrorMessageComponent,
+    ReactiveFormsModule,
     FormControlRequiredAttributeDirective,
   ],
-  templateUrl: './user.html',
-  styleUrl: './user.scss',
+  templateUrl: './profile.html',
+  styleUrl: './profile.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class UserComponent implements OnInit {
+export class Profile implements OnInit {
   private readonly controlContainer = inject(ControlContainer);
-  form!: FormGroup<UserForm>;
 
+  titles = TITLES;
+
+  form!: FormGroup<ProfileForm>;
   ngOnInit(): void {
     this.form = this.controlContainer.control as FormGroup;
   }

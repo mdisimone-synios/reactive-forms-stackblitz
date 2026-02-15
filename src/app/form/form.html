@@ -1,9 +1,11 @@
 <form [formGroup]="form" (submit)="submit()" class="requires-validation">
   <div class="d-flex flex-column gap-4 m-3">
     <app-user formGroupName="user"></app-user>
+    <app-profile formGroupName="profile"></app-profile>
     <app-address formGroupName="address"></app-address>
+    <app-links formGroupName="links"></app-links>
     <app-keywords formGroupName="keywords"></app-keywords>
-    <app-languages></app-languages>
+    <app-languages formArrayName="language"></app-languages>
     <div class="d-flex justify-content-end gap-3">
       <button type="button" class="btn btn-secondary">Cancel</button>
       <button class="btn btn-primary" type="submit" [disabled]="!form.valid">

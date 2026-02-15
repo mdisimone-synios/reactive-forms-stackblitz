@@ -1,26 +1,26 @@
-# Angular Reactive Forms — Patterns & Recipes
+# Angular Reactive Forms — Patterns & Rezepte
 
-## Table of Contents
+## Inhaltsverzeichnis
 
-- [Form Architecture](#form-architecture)
-- [Child Component Forms with ControlContainer](#child-component-forms-with-controlcontainer)
-- [Extending the Parent Form from a Child Component](#extending-the-parent-form-from-a-child-component)
-- [Dynamic FormControls with FormArray](#dynamic-formcontrols-with-formarray)
-- [Select Placeholders](#select-placeholders)
+- [Formular-Architektur](#formular-architektur)
+- [Child-Component-Formulare mit ControlContainer](#child-component-formulare-mit-controlcontainer)
+- [Das Parent-Formular aus einer Child-Komponente erweitern](#das-parent-formular-aus-einer-child-komponente-erweitern)
+- [Dynamische FormControls mit FormArray](#dynamische-formcontrols-mit-formarray)
+- [Select-Platzhalter](#select-platzhalter)
 - [Radio Buttons](#radio-buttons)
 - [Custom Validators](#custom-validators)
-- [Combined Validators](#combined-validators)
-- [Composed Validators](#composed-validators)
+- [Kombinierte Validators](#kombinierte-validators)
+- [Komponierte Validators](#komponierte-validators)
 - [Async Validators](#async-validators)
-- [Conditional Validators](#conditional-validators)
-- [Reusable Error Message Component](#reusable-error-message-component)
-- [Auto-Required Attribute Directive](#auto-required-attribute-directive)
+- [Bedingte Validators](#bedingte-validators)
+- [Wiederverwendbare Fehlermeldungs-Komponente](#wiederverwendbare-fehlermeldungs-komponente)
+- [Auto-Required-Attribut-Direktive](#auto-required-attribut-direktive)
 
 ---
 
-## Form Architecture
+## Formular-Architektur
 
-The form is defined in a single parent component using `NonNullableFormBuilder` and strongly typed with a `CombinedForm` interface. Each section is delegated to a child component via `formGroupName` / `formArrayName`.
+Das Formular wird in einer einzigen Parent-Komponente mit `NonNullableFormBuilder` definiert und ist stark typisiert durch ein `CombinedForm`-Interface. Jeder Abschnitt wird per `formGroupName` / `formArrayName` an eine Child-Komponente delegiert.
 
 ```ts
 // main.models.ts
@@ -46,13 +46,13 @@ export type CombinedForm = {
 </form>
 ```
 
-Child components **never** wrap their template in a `<form>` tag — they use `<div [formGroup]="form">` instead, avoiding invalid nested `<form>` elements.
+Child-Komponenten verwenden **niemals** ein `<form>`-Tag in ihrem Template — stattdessen `<div [formGroup]="form">`, um ungueltige verschachtelte `<form>`-Elemente zu vermeiden.
 
 ---
 
-## Child Component Forms with ControlContainer
+## Child-Component-Formulare mit ControlContainer
 
-Child components receive their slice of the parent form via `ControlContainer` injection. No `@Input()` needed.
+Child-Komponenten erhalten ihren Teil des Parent-Formulars ueber `ControlContainer`-Injection. Kein `@Input()` noetig.
 
 ```ts
 // user.ts
@@ -71,16 +71,16 @@ export class UserComponent implements OnInit {
 }
 ```
 
-The parent binds the sub-group with `formGroupName="user"`, and `ControlContainer` resolves to the corresponding `FormGroup<UserForm>`.
+Das Parent bindet die Sub-Group mit `formGroupName="user"`, und `ControlContainer` loest sich zur entsprechenden `FormGroup<UserForm>` auf.
 
 ---
 
-## Extending the Parent Form from a Child Component
+## Das Parent-Formular aus einer Child-Komponente erweitern
 
-When a child component needs to dynamically create controls that the parent doesn't know about upfront, it can extend the parent-provided `FormGroup` in `ngOnInit`.
+Wenn eine Child-Komponente Controls dynamisch erzeugen muss, die dem Parent vorab nicht bekannt sind, kann sie die bereitgestellte `FormGroup` in `ngOnInit` erweitern.
 
 ```ts
-// keywords.ts — adds a FormControl<boolean> per keyword into the parent's empty FormGroup
+// keywords.ts — fuegt pro Keyword ein FormControl<boolean> in die leere FormGroup des Parents ein
 export class KeywordsComponent implements OnInit {
   private readonly controlContainer = inject(ControlContainer);
   form!: FormGroup<KeywordsForm>;
@@ -99,20 +99,20 @@ export class KeywordsComponent implements OnInit {
 }
 ```
 
-The parent defines just an empty group — the child populates it:
+Das Parent definiert nur eine leere Group — die Child-Komponente befuellt sie:
 
 ```ts
-// form.ts (parent)
+// form.ts (Parent)
 form = this.fb.group<CombinedForm>({
   // ...
-  keywords: this.fb.group({}), // child fills this in ngOnInit
+  keywords: this.fb.group({}), // Child befuellt dies in ngOnInit
 });
 ```
 
-For `FormArray`-based children like `LanguagesComponent`, the same pattern applies but with push/remove semantics:
+Fuer `FormArray`-basierte Child-Komponenten wie `LanguagesComponent` gilt dasselbe Muster, aber mit Push/Remove-Semantik:
 
 ```ts
-// languages.ts — manages a FormArray<FormControl<string>> via checkbox events
+// languages.ts — verwaltet ein FormArray<FormControl<string>> ueber Checkbox-Events
 export class LanguagesComponent {
   private readonly controlContainer = inject(ControlContainer);
   private readonly fb = inject(FormBuilder);
@@ -137,7 +137,7 @@ export class LanguagesComponent {
 ```
 
 ```html
-<!-- languages.html — no formGroup binding, operates on the FormArray directly -->
+<!-- languages.html — kein formGroup-Binding, arbeitet direkt auf dem FormArray -->
 @for (lang of languages; track lang.value; let i = $index) {
   <input
     type="checkbox"
@@ -151,9 +151,9 @@ export class LanguagesComponent {
 
 ---
 
-## Dynamic FormControls with FormArray
+## Dynamische FormControls mit FormArray
 
-`LinksComponent` demonstrates adding and removing typed `FormGroup`s within a `FormArray`.
+`LinksComponent` zeigt das Hinzufuegen und Entfernen typisierter `FormGroup`s innerhalb eines `FormArray`.
 
 ```ts
 // links.ts
@@ -200,9 +200,9 @@ export class Links {
 
 ---
 
-## Select Placeholders
+## Select-Platzhalter
 
-Use a disabled `<option>` with `[ngValue]="null"` as the default placeholder. The control is initialized with `null` and typed as `FormControl<string | null>`.
+Eine deaktivierte `<option>` mit `[ngValue]="null"` dient als Standard-Platzhalter. Das Control wird mit `null` initialisiert und als `FormControl<string | null>` typisiert.
 
 ```ts
 country: this.fb.control<string | null>(null, {
@@ -219,13 +219,13 @@ country: this.fb.control<string | null>(null, {
 </select>
 ```
 
-The disabled placeholder cannot be re-selected once the user picks a value. `Validators.required` rejects `null`, enforcing a selection.
+Der deaktivierte Platzhalter kann nach einer Auswahl nicht erneut gewaehlt werden. `Validators.required` lehnt `null` ab und erzwingt so eine Auswahl.
 
 ---
 
 ## Radio Buttons
 
-Multiple `<input type="radio">` elements share the same `formControlName`. The `value` attribute determines what gets written to the control.
+Mehrere `<input type="radio">`-Elemente teilen sich denselben `formControlName`. Das `value`-Attribut bestimmt, welcher Wert in das Control geschrieben wird.
 
 ```ts
 primaryContact: this.fb.control(''),
@@ -249,7 +249,7 @@ primaryContact: this.fb.control(''),
 
 ### URL Validator
 
-Uses the native `URL` constructor for validation.
+Nutzt den nativen `URL`-Konstruktor zur Validierung.
 
 ```ts
 export function urlValidator(control: AbstractControl): ValidationErrors | null {
@@ -264,9 +264,9 @@ export function urlValidator(control: AbstractControl): ValidationErrors | null 
 }
 ```
 
-### Pattern Validator with Custom Error Key
+### Pattern Validator mit eigenem Error-Key
 
-Wraps `Validators.pattern` but returns a domain-specific error key instead of the generic `pattern` error.
+Wrapt `Validators.pattern`, gibt aber einen domainspezifischen Error-Key zurueck statt des generischen `pattern`-Fehlers.
 
 ```ts
 patternValidator(pattern: string | RegExp, errorName: string): ValidatorFn {
@@ -283,9 +283,9 @@ patternValidator(pattern: string | RegExp, errorName: string): ValidatorFn {
 
 ---
 
-## Combined Validators
+## Kombinierte Validators
 
-`isEqualWith` compares two `AbstractControl` values. Applied as a group-level validator so it has access to both controls.
+`isEqualWith` vergleicht die Werte zweier `AbstractControl`s. Wird als Group-Level-Validator angewendet, damit Zugriff auf beide Controls besteht.
 
 ```ts
 isEqualWith(control: AbstractControl, compareTo: AbstractControl) {
@@ -298,7 +298,7 @@ isEqualWith(control: AbstractControl, compareTo: AbstractControl) {
 },
 ```
 
-Applied on the `user` group:
+Angewendet auf die `user`-Group:
 
 ```ts
 user: this.fb.group<UserForm>(
@@ -321,20 +321,20 @@ user: this.fb.group<UserForm>(
 ),
 ```
 
-The group-level error is displayed with a `formName`-less `<app-error-message>` that targets the group itself:
+Der Group-Level-Fehler wird mit einem `formName`-losen `<app-error-message>` angezeigt, das auf die Group selbst abzielt:
 
 ```html
-<!-- Control-level error -->
+<!-- Control-Level-Fehler -->
 <app-error-message formName="passwordConfirm"></app-error-message>
-<!-- Group-level error (isEqualWith) -->
+<!-- Group-Level-Fehler (isEqualWith) -->
 <app-error-message></app-error-message>
 ```
 
 ---
 
-## Composed Validators
+## Komponierte Validators
 
-`passwordStrength` composes multiple `patternValidator`s with `Validators.compose`. Each sub-validator returns its own error key, enabling granular error messages.
+`passwordStrength` kombiniert mehrere `patternValidator`s mit `Validators.compose`. Jeder Sub-Validator gibt seinen eigenen Error-Key zurueck und ermoeglicht so granulare Fehlermeldungen.
 
 ```ts
 passwordStrength(config: { minLength: number }): ValidatorFn {
@@ -352,7 +352,7 @@ passwordStrength(config: { minLength: number }): ValidatorFn {
 
 ## Async Validators
 
-`BackendService.usernameValidator()` returns an `AsyncValidatorFn` that checks against existing usernames.
+`BackendService.usernameValidator()` gibt eine `AsyncValidatorFn` zurueck, die gegen existierende Benutzernamen prueft.
 
 ```ts
 @Injectable({ providedIn: 'root' })
@@ -371,7 +371,7 @@ export class BackendService {
 }
 ```
 
-Applied with `updateOn: 'blur'` to avoid firing on every keystroke:
+Angewendet mit `updateOn: 'blur'`, um nicht bei jedem Tastendruck auszuloesen:
 
 ```ts
 username: this.fb.control('', {
@@ -383,9 +383,9 @@ username: this.fb.control('', {
 
 ---
 
-## Conditional Validators
+## Bedingte Validators
 
-`validateWhen` applies a validator only when a sibling control meets a condition. It subscribes to the sibling's `valueChanges` to trigger re-validation, using a `subscribed` flag to prevent duplicate subscriptions.
+`validateWhen` wendet einen Validator nur an, wenn ein Geschwister-Control eine Bedingung erfuellt. Es abonniert die `valueChanges` des Geschwister-Controls, um eine Re-Validierung auszuloesen. Ein `subscribed`-Flag verhindert doppelte Subscriptions.
 
 ```ts
 export function validateWhen(
@@ -415,7 +415,7 @@ export function validateWhen(
 }
 ```
 
-Usage — `phone` is required only when `primaryContact` equals `"phone"`:
+Verwendung — `phone` ist nur dann `required`, wenn `primaryContact` den Wert `"phone"` hat:
 
 ```ts
 phone: this.fb.control('', {
@@ -431,9 +431,9 @@ phone: this.fb.control('', {
 
 ---
 
-## Reusable Error Message Component
+## Wiederverwendbare Fehlermeldungs-Komponente
 
-`ErrorMessageComponent` resolves its target control via `ControlContainer` and an optional `formName` input signal. It subscribes to `statusChanges` and `valueChanges` to trigger change detection in an `OnPush` tree, using `takeUntilDestroyed` for automatic cleanup.
+`ErrorMessageComponent` ermittelt das Ziel-Control ueber `ControlContainer` und ein optionales `formName`-Input-Signal. Sie abonniert `statusChanges` und `valueChanges`, um die Change Detection im `OnPush`-Baum auszuloesen, und nutzt `takeUntilDestroyed` fuer automatisches Cleanup.
 
 ```ts
 @Component({
@@ -470,21 +470,21 @@ export class ErrorMessageComponent implements OnInit {
 }
 ```
 
-When `formName` is omitted, the component targets the parent `FormGroup` itself — useful for group-level validators like `isEqualWith`:
+Wird `formName` weggelassen, zielt die Komponente auf die uebergeordnete `FormGroup` selbst ab — nuetzlich fuer Group-Level-Validators wie `isEqualWith`:
 
 ```html
-<!-- Control-level errors -->
+<!-- Control-Level-Fehler -->
 <app-error-message formName="password"></app-error-message>
 
-<!-- Group-level errors (targets the parent FormGroup) -->
+<!-- Group-Level-Fehler (zielt auf die uebergeordnete FormGroup) -->
 <app-error-message></app-error-message>
 ```
 
 ---
 
-## Auto-Required Attribute Directive
+## Auto-Required-Attribut-Direktive
 
-Automatically sets the native `required` attribute on any element that has `Validators.required` attached. No manual `required` attribute needed in templates.
+Setzt automatisch das native `required`-Attribut auf jedes Element, das `Validators.required` zugewiesen hat. Kein manuelles `required`-Attribut im Template noetig.
 
 ```ts
 @Directive({
@@ -506,4 +506,4 @@ export class FormControlRequiredAttributeDirective implements OnInit {
 }
 ```
 
-Import it in each component's `imports` array — it applies to all `[formControl]` and `[formControlName]` elements in that template.
+Im `imports`-Array jeder Komponente importieren — die Direktive greift auf alle `[formControl]`- und `[formControlName]`-Elemente im jeweiligen Template.

@@ -46,6 +46,14 @@
             }
           }
         },
+        "test": {
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "buildTarget": "demo:build",
+            "runner": "vitest",
+            "tsConfig": "tsconfig.spec.json"
+          }
+        },
         "serve": {
           "builder": "@angular/build:dev-server",
           "configurations": {

@@ -1,28 +1,10 @@
-<form [formGroup]="form" class="needs-validation">
+<div [formGroup]="form">
   <div class="grid">
     <div class="g-col-12 form-group">
-      <div class="form-check">
-        <input
-          class="form-check-input"
-          type="radio"
-          name="title"
-          id="title-1"
-        />
-        <label class="form-check-label" for="title-1"> Prof </label>
-      </div>
-      <div class="form-check">
-        <input
-          class="form-check-input"
-          type="radio"
-          name="title"
-          id="title-2"
-        />
-        <label class="form-check-label" for="title-2"> Doc </label>
-      </div>
-    </div>
-
-    <div class="g-col-12 form-group">
-      <label for="username" class="form-label">Username</label>
+      <label for="username" class="form-label"
+        >Username ('hello', 'world', 'username', 'neutronenstern' are already)
+        taken</label
+      >
       <input
         id="username"
         class="form-control"
@@ -30,40 +12,6 @@
         placeholder="Enter username"
       />
       <app-error-message formName="username"></app-error-message>
-    </div>
-    <div class="g-col-12 form-group">
-      <label for="firstname" class="form-label">First name</label>
-      <input
-        id="firstname"
-        class="form-control"
-        formControlName="firstName"
-        placeholder="Enter first name"
-      />
-      <app-error-message formName="firstName"></app-error-message>
-    </div>
-    <div class="g-col-12 form-group">
-      <label for="lastname" class="form-label">Last name</label>
-      <input
-        id="lastname"
-        class="form-control"
-        formControlName="lastName"
-        placeholder="Enter last name"
-      />
-      <app-error-message formName="lastName"></app-error-message>
-    </div>
-    <div class="g-col-12 form-group">
-      <label for="email" class="form-label">Email</label>
-      <div class="input-group">
-        <span class="input-group-text" id="visible-addon">{{ '@' }}</span>
-        <input
-          type="email"
-          id="email"
-          class="form-control"
-          formControlName="email"
-          placeholder="Enter email address"
-        />
-      </div>
-      <app-error-message formName="email"></app-error-message>
     </div>
     <div class="g-col-6 form-group">
       <label for="password" class="form-label">Password</label>
@@ -87,6 +35,7 @@
         placeholder="Confirm password"
       />
       <app-error-message formName="passwordConfirm"></app-error-message>
+      <app-error-message></app-error-message>
     </div>
   </div>
-</form>
+</div>
