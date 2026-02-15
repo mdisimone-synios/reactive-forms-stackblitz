@@ -15,20 +15,32 @@
           </label>
         </div>
       }
+      <button
+        class="btn btn-danger btn-sm btn-info-toggle bi bi-question-circle"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapseKeywords"
+        aria-expanded="false"
+        aria-controls="collapseKeywords"
+      ></button>
     </div>
     <div class="g-col-12 form-group">
-      <p>
-        The <code>Keywords</code> component demonstrates how child components
-        can dynamically extend the parent form on initialisation.
-      </p>
-      <p>
-        See:
-        <a
-          href="https://github.com/MarcelloDiSimone/reactive-forms-stackblitz?tab=readme-ov-file#extending-the-parent-form-from-a-child-component"
-          target="_blank"
-          >here</a
-        >
-      </p>
+      <div class="collapse" id="collapseKeywords">
+        <div class="card card-body">
+          <p>
+            The <code>Keywords</code> component demonstrates how child
+            components can dynamically extend the parent form on initialisation.
+          </p>
+          <p>
+            See:
+            <a
+              href="https://github.com/MarcelloDiSimone/reactive-forms-stackblitz?tab=readme-ov-file#extending-the-parent-form-from-a-child-component"
+              target="_blank"
+              >here</a
+            >
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </div>

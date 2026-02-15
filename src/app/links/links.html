@@ -30,24 +30,36 @@
       </div>
     </div>
   }
-  <div class="g-col-12">
+  <div class="g-col-12 position-relative">
     <button type="button" class="btn btn-secondary" (click)="addLink()">
       Add Link
     </button>
+    <button
+      class="btn btn-danger btn-sm btn-info-toggle bi bi-question-circle"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#collapseLinks"
+      aria-expanded="false"
+      aria-controls="collapseLinks"
+    ></button>
   </div>
 
   <div class="g-col-12 form-group">
-    <p>
-      The <code>Links</code> component demonstrates how to add and remove
-      <code>formGroups</code> from an existing Form.
-    </p>
-    <p>
-      See:
-      <a
-        href="https://github.com/MarcelloDiSimone/reactive-forms-stackblitz?tab=readme-ov-filem#dynamic-formcontrols-with-formarray"
-        target="_blank"
-        >here</a
-      >
-    </p>
+    <div class="collapse" id="collapseLinks">
+      <div class="card card-body">
+        <p>
+          The <code>Links</code> component demonstrates how to add and remove
+          <code>formGroups</code> from an existing Form.
+        </p>
+        <p>
+          See:
+          <a
+            href="https://github.com/MarcelloDiSimone/reactive-forms-stackblitz?tab=readme-ov-filem#dynamic-formcontrols-with-formarray"
+            target="_blank"
+            >here</a
+          >
+        </p>
+      </div>
+    </div>
   </div>
 </div>
