@@ -23,11 +23,7 @@
           <app-error-message formName="title"></app-error-message>
         </div>
         <div class="g-col-2 d-flex align-items-end">
-          <button
-            type="button"
-            class="btn btn-danger"
-            (click)="removeLink(i)"
-          >
+          <button type="button" class="btn btn-danger" (click)="removeLink(i)">
             Remove
           </button>
         </div>
@@ -38,5 +34,20 @@
     <button type="button" class="btn btn-secondary" (click)="addLink()">
       Add Link
     </button>
+  </div>
+
+  <div class="g-col-12 form-group">
+    <p>
+      The <code>Links</code> component demonstrates how to add and remove
+      <code>formGroups</code> from an existing Form.
+    </p>
+    <p>
+      See:
+      <a
+        href="https://github.com/MarcelloDiSimone/reactive-forms-stackblitz?tab=readme-ov-filem#dynamic-formcontrols-with-formarray"
+        target="_blank"
+        >here</a
+      >
+    </p>
   </div>
 </div>

@@ -14,7 +14,25 @@
         <app-error-message formName="title"></app-error-message>
       </div>
     </div>
-
+    <div class="g-col-12 form-group">
+      This select demontrates the correct way to have something like a
+      <code>placeholder</code> in inputs. This is done by adding a
+      <code>disabled</code> option with a value of <code>null</code>
+      <p>
+        <code>
+          &lt;option disabled [ngValue]=&quot;null&quot;&gt;Select your
+          Title&lt;/option&gt;
+        </code>
+      </p>
+      <p>
+        See
+        <a
+          href="https://github.com/MarcelloDiSimone/reactive-forms-stackblitz?tab=readme-ov-file#select-placeholders"
+          target="_blank"
+          >Select Placeholders</a
+        >
+      </p>
+    </div>
     <div class="g-col-12 form-group">
       <label for="firstname" class="form-label">First name</label>
       <input
@@ -54,10 +72,7 @@
     <div class="g-col-12 form-group">
       <label for="phone" class="form-label">Phone</label>
       <div class="input-group">
-        <span
-          class="input-group-text bi bi-telephone"
-          id="phone-addon"
-        ></span>
+        <span class="input-group-text bi bi-telephone" id="phone-addon"></span>
         <input
           type="phone"
           id="phone"
@@ -68,7 +83,6 @@
         <app-error-message formName="phone"></app-error-message>
       </div>
     </div>
-
     <div class="g-col-12 form-group">
       <label for="primary-contact">Primary contact:</label>
       <div class="form-check">
@@ -91,6 +105,23 @@
         />
         <label class="form-check-label" for="primary-contact-2"> Phone </label>
       </div>
+    </div>
+    <div class="g-col-12 form-group">
+      <p>
+        This radio select group demonstates a conditional validation, using a
+        custom <code>validateWhen</code> factory function. In case `Phone` is
+        selected as primare contact method, the conditional validation switches
+        the Phone <code>formControl</code> to required.
+      </p>
+      <p>
+        The <code>validateWhen</code> factory function and its working is
+        explained in greater detail in the Readme
+        <a
+          href="https://github.com/MarcelloDiSimone/reactive-forms-stackblitz?tab=readme-ov-file#conditional-validators"
+          target="_blank"
+          >here</a
+        >
+      </p>
     </div>
   </div>
 </div>
