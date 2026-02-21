@@ -37,3 +37,32 @@ input.is-pending {
 .form-group {
   position: relative;
 }
+
+/* INVALID */
+.form-control.ng-invalid.ng-touched,
+.form-select.ng-invalid.ng-touched,
+.form-check-input.ng-invalid.ng-touched {
+  @extend .is-invalid !optional;
+  @include bs.form-validation-state(
+    'invalid',
+    bs.$form-invalid-color,
+    bs.$form-feedback-icon-invalid
+  );
+}
+
+/* VALID */
+.form-control.ng-valid.ng-touched,
+.form-select.ng-valid.ng-touched,
+.form-check-input.ng-valid.ng-touched {
+  @extend .is-valid !optional;
+  @include bs.form-validation-state(
+    'valid',
+    bs.$form-valid-color,
+    bs.$form-feedback-icon-valid
+  );
+}
+
+.ng-invalid.ng-touched ~ .invalid-feedback,
+.ng-valid.ng-touched ~ .valid-feedback {
+  display: block;
+}
